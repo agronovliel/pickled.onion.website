@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מותג בצל מוחמץ - צור קשר</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1>צור קשר עם מותג בצל מוחמץ</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">דף הבית</a></li>
+                    <li><a href="about.html">אודות</a></li>
+                    <li><a href="varieties.html">סוגי בצל</a></li>
+                    <li><a href="recipes.html">מתכונים</a></li>
+                    <li><a href="contactUs.html">צור קשר</a></li>
+                    <li><a href="sitemap.html">מפת האתר</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <nav aria-label="פירורי לחם">
+                <a href="index.html">דף הבית</a> &gt; צור קשר
+            </nav>
+
+            <h2>נשמח לשמוע ממך!</h2>
+            <form>
+                <p>
+                    <label for="fullname">שם מלא *:</label><br>
+                    <input type="text" id="fullname" name="fullname" placeholder="הקלד שם מלא" required>
+                </p>
+                <p>
+                    <label for="email">דוא"ל *:</label><br>
+                    <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+                </p>
+                <p>
+                    <label for="quantity">כמות צנצנות מבוקשת:</label><br>
+                    <input type="number" id="quantity" name="quantity" value="1" min="1">
+                </p>
+                <fieldset>
+                    <legend>סוג הבצל המבוקש:</legend>
+                    <input type="radio" id="classic" name="onion_type" value="classic" checked>
+                    <label for="classic">בצל סגול קלאסי</label><br>
+                    <input type="radio" id="spicy" name="onion_type" value="spicy">
+                    <label for="spicy">בצל מוחמץ חריף</label>
+                </fieldset>
+                <p>
+                    <label for="message">הודעה:</label><br>
+                    <textarea id="message" name="message" rows="4" placeholder="כתוב כאן..."></textarea>
+                </p>
+                <p>
+                    <button type="submit">שלח הודעה</button>
+                </p>
+            </form>
+        </main>
+
+        <footer>
+            <p>© 2026 כל הזכויות שמורות - מותג בצל מוחמץ</p>
+        </footer>
+    </div>
+</body>
+</html>

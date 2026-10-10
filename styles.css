@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@600;800&family=Rubik:wght@400;600;800&family=Varela+Round&display=swap');
+
+html, body {
+    direction: rtl;
+    font-family: 'Rubik', Arial, sans-serif;
+    background-color: #f5edd8;
+    background-image: 
+        radial-gradient(#d6c5ab 15%, transparent 16%),
+        radial-gradient(#e0d1b8 15%, transparent 16%),
+        linear-gradient(45deg, rgba(212, 163, 115, 0.05) 25%, transparent 25%, transparent 75%, rgba(212, 163, 115, 0.05) 75%),
+        linear-gradient(45deg, rgba(212, 163, 115, 0.05) 25%, transparent 25%, transparent 75%, rgba(212, 163, 115, 0.05) 75%);
+    background-size: 16px 16px, 16px 16px, 32px 32px, 32px 32px;
+    background-position: 0 0, 8px 8px, 0 0, 16px 16px;
+    color: #333333;
+    margin: 0;
+    padding: 30px 15px;
+    text-align: center;
+}
+
+#container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: #fffdfa;
+    padding: 35px 30px;
+    border-radius: 20px;
+    border: 3px solid #800020;
+    outline: 2px dashed #d4a373;
+    outline-offset: -10px;
+    box-shadow: 0 12px 35px rgba(128, 0, 32, 0.12);
+    position: relative;
+}
+
+h1, h2, h3 {
+    font-family: 'Varela Round', 'Rubik', sans-serif;
+    color: #800020;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+h1::after {
+    content: "";
+    display: block;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #d4a373, transparent);
+    margin: 12px auto 0 auto;
+    position: relative;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 25px 0 15px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+header nav li {
+    display: inline-block;
+}
+
+header nav a, header nav a:visited, header nav a:link {
+    text-decoration: none !important;
+    color: #ffffff !important;
+    background-color: #800020;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    display: inline-block;
+    box-shadow: 0 4px 10px rgba(128, 0, 32, 0.2);
+    transition: all 0.3s ease;
+}
+
+header nav a:hover {
+    background-color: #a31432;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(128, 0, 32, 0.35);
+}
+
+nav[aria-label="פירורי לחם"] {
+    margin: 10px 0 20px 0;
+    font-size: 0.85rem;
+    color: #666666;
+    text-align: right;
+}
+
+nav[aria-label="פירורי לחם"] a {
+    background: none !important;
+    color: #800020 !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-weight: 600;
+    text-decoration: underline !important;
+}
+
+nav[aria-label="פירורי לחם"] a:hover {
+    color: #a31432 !important;
+    transform: none !important;
+}
+
+img {
+    max-width: 320px;
+    height: auto;
+    border-radius: 18px;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    margin: 20px auto;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.02);
+}
+
+ul {
+    text-align: right;
+    display: inline-block;
+    margin: 20px auto;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: right;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+form fieldset {
+    border: 1px solid #800020;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px 0;
+}
+
+form button {
+    background-color: #800020;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #a31432;
+}
+
+footer {
+    margin-top: 35px;
+    padding-top: 15px;
+    border-top: 1px solid #e2d7c5;
+    font-size: 0.85rem;
+    color: #776655;
+}
