@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>בנה את הפיצה שלך</title>
+<style>
+body { direction: rtl; font-family: Arial, sans-serif; background-color: #f7f2e8; margin: 0; }
+#container { width: 1100px; max-width: calc(100% - 32px); margin: 40px auto; }
+h1 { text-align: center; font-size: 42px; color: #c94c24; margin-bottom: 40px; }
+#mainArea { display: flex; gap: 35px; align-items: stretch; }
+/* אזור הבחירות */
+#formArea { width: 360px; box-sizing: border-box; background-color: white; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); }
+.box { margin-bottom: 30px; }
+.box h2 { color: #c94c24; font-size: 22px; border-bottom: 2px solid #f0c36e; padding-bottom: 8px; }
+.box div { margin: 12px 0; }
+label { font-size: 17px; }
+input[type="text"] { width: 90%; box-sizing: border-box; padding: 10px; border: 1px solid #ccc; border-radius: 8px; margin-top: 10px; }
+/* אזור הפיצה */
+#pizzaArea { flex: 1; min-width: 0; background-color: white; padding: 25px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12); text-align: center; }
+#pizzaArea h2 { color: #c94c24; font-size: 26px; }
+#pizzaPicture { height: 350px; display: flex; justify-content: center; align-items: center; }
+#smallPizza, #familyPizza, #largePizza { max-width: 100%; max-height: 330px; object-fit: contain; }
+/* תמונות התוספות */
+#toppingPictures { display: flex; justify-content: center; gap: 30px; padding-top: 20px; border-top: 1px solid #ddd; }
+#olivesImg, #mushroomsImg, #cornImg { width: 120px; height: 90px; object-fit: contain; opacity: 0.3; }
+/* כפתור הזמנה */
+#orderButton { width: 100%; padding: 14px; background-color: #c94c24; color: white; border: none; border-radius: 10px; font-size: 19px; font-weight: bold; cursor: pointer; }
+#orderButton:disabled { background-color: #ccc; cursor: not-allowed; }
+/* תוצאת ההזמנה */
+#result { margin-top: 30px; background-color: white; padding: 20px; border-radius: 15px; text-align: center; font-size: 18px; box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1); }
+@media (max-width: 750px) { #mainArea { flex-direction: column; } #formArea { width: 100%; } #pizzaArea { width: auto; } #toppingPictures { gap: 8px; } #toppingPictures img { max-width: 30%; } }
+</style>
+</head>
+<body>
+<div id="container">
+<h1>בנה את הפיצה שלך</h1>
+<div id="mainArea">
+<!-- צד ימין: טופס הבחירות -->
+<div id="formArea">
+<div class="box"><h2>פרטים</h2><label for="userName">מה השם שלך?</label><input id="userName" type="text" oninput="checkForm()"></div>
+<div class="box"><h2>בחר גודל פיצה</h2>
+<div><input type="radio" id="small" name="pizzaSize" value="אישית" onclick="chooseSize('smallPizza')"><label for="small">אישית</label></div>
+<div><input type="radio" id="family" name="pizzaSize" value="משפחתית" onclick="chooseSize('familyPizza')"><label for="family">משפחתית</label></div>
+<div><input type="radio" id="large" name="pizzaSize" value="ענקית" onclick="chooseSize('largePizza')"><label for="large">ענקית</label></div>
+</div>
+<div class="box"><h2>בחר תוספות</h2>
+<div><input type="checkbox" id="olives" value="זיתים" onclick="changeTopping('olivesImg', this)"><label for="olives">זיתים</label></div>
+<div><input type="checkbox" id="mushrooms" value="פטריות" onclick="changeTopping('mushroomsImg', this)"><label for="mushrooms">פטריות</label></div>
+<div><input type="checkbox" id="corn" value="תירס" onclick="changeTopping('cornImg', this)"><label for="corn">תירס</label></div>
+</div>
+<input id="orderButton" type="button" value="הזמן פיצה" onclick="orderPizza()" disabled>
+</div>
+<!-- צד שמאל: תצוגת הפיצה והתוספות -->
+<div id="pizzaArea"><h2>הפיצה שלי</h2>
+<div id="pizzaPicture">
+<img id="smallPizza" src="images/smallPizza.png" alt="פיצה אישית" style="display:none;">
+<img id="familyPizza" src="images/familyPizza.png" alt="פיצה משפחתית" style="display:none;">
+<img id="largePizza" src="images/largePizza.png" alt="פיצה ענקית" style="display:none;">
+</div>
+<div id="toppingPictures">
+<img id="olivesImg" src="images/olives.png" alt="זיתים">
+<img id="mushroomsImg" src="images/mushrooms.png" alt="פטריות">
+<img id="cornImg" src="images/corn.png" alt="תירס">
+</div></div></div>
+<div id="result" aria-live="polite"></div>
+</div>
+<script>
+function chooseSize(pizzaId) {
+    document.getElementById("smallPizza").style.display = "none";
+    document.getElementById("familyPizza").style.display = "none";
+    document.getElementById("largePizza").style.display = "none";
+    document.getElementById(pizzaId).style.display = "block";
+    checkForm();
+}
+function changeTopping(imageId, checkbox) {
+    if (checkbox.checked == true) {
+        document.getElementById(imageId).style.opacity = "1";
+    } else {
+        document.getElementById(imageId).style.opacity = "0.3";
+    }
+}
+function checkForm() {
+    const userName = document.getElementById("userName").value;
+    const pizzaSize = document.querySelector('input[name="pizzaSize"]:checked');
+    if (userName != "" && pizzaSize != null) {
+        document.getElementById("orderButton").disabled = false;
+    } else {
+        document.getElementById("orderButton").disabled = true;
+    }
+}
+function orderPizza() {
+    const userName = document.getElementById("userName").value;
+    const pizzaSize = document.querySelector('input[name="pizzaSize"]:checked').value;
+    const toppings = document.querySelectorAll('input[type="checkbox"]:checked');
+    let toppingsText = "";
+    for (let i = 0; i < toppings.length; i++) {
+        toppingsText = toppingsText + toppings[i].value;
+        if (i < toppings.length - 1) {
+            toppingsText = toppingsText + ", ";
+        }
+    }
+    if (toppingsText == "") toppingsText = "ללא תוספות";
+    // שימוש ב-textContent עבור שם הלקוח מונע פירוש שלו כקוד HTML
+    const result = document.getElementById("result");
+    result.replaceChildren();
+    const title = document.createElement("h2");
+    title.textContent = "ההזמנה של " + userName;
+    const details = document.createElement("p");
+    details.textContent = "גודל הפיצה: " + pizzaSize + " | תוספות: " + toppingsText;
+    const confirmation = document.createElement("strong");
+    confirmation.textContent = "ההזמנה התקבלה בהצלחה!";
+    result.append(title, details, confirmation);
+}
+</script>
+</body>
+</html>
